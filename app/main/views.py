@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, abort
 from . import main
-from ..models import Reviews, User
+from ..models import User
 from .forms import DeleteUser
 from flask_login import login_required
 
