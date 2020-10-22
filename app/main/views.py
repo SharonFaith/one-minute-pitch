@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for, abort
 from . import main
 from ..models import User
 from .forms import DeleteUser, UpdateProfile
-from .. import db
+from .. import db, photos
 from flask_login import login_required
 
 
