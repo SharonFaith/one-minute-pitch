@@ -44,3 +44,12 @@ class Pitch(db.Model):
     pitch_body = db.Column(db.String)
     posted = db.Column(db.DateTime, default = datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def save_pitch(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_all_pitches(cls):
+        pitches = Pitch.query.all()
+        return pitches
