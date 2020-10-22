@@ -66,3 +66,10 @@ def update_pic(uname):
         db.session.commit()
     return redirect(url_for('main.profile', uname = uname))
 
+@main.route('/category/<category>')
+def show_pitches(category):
+    '''
+    function that will show the pitches under a certain category
+    '''
+
+    return render_template('pitches_for_cat.html')
