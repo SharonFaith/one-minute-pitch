@@ -14,3 +14,7 @@ class UpdateProfile(FlaskForm):
 
 class DeleteUser(FlaskForm):
     submit = SubmitField('Delete account')
+
+class NewComment(FlaskForm):
+    comment = TextAreaField('New Comment', validators=[Required()])
+    submit = SubmitField('Submit')
