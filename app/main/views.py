@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, abort
 from . import main
-from ..models import User, Pitch
-from .forms import DeleteUser, UpdateProfile, PitchForm
+from ..models import User, Pitch, Comment
+from .forms import DeleteUser, UpdateProfile, PitchForm, NewComment
 from .. import db, photos
 from flask_login import login_required
 
@@ -101,3 +101,12 @@ def new_pitch(category):
         return redirect(url_for('main.show_pitches', category = categ))
 
     return render_template('new_pitch.html', form = form)
+
+@main.route('/pitch/comments/<pitch_id>')
+def show_comments(pitch_id):
+    comments = Comment.get_all_comments()
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+
+  
+
+    return render_template('comments.html', pitch = pitch)
