@@ -106,7 +106,32 @@ def new_pitch(category):
 def show_comments(pitch_id):
     comments = Comment.get_all_comments()
     pitch = Pitch.query.filter_by(id = pitch_id).first()
+    
+    pitchid = pitch.id
+    spec_comments = []
 
-  
+    print(comments)
 
-    return render_template('comments.html', pitch = pitch)
+    for comment in comments:
+        if comment.pitches_id == pitchid:
+            spec_comments.insert(0, comment)
+
+    print(spec_comments)
+
+    return render_template('comments.html', pitch = pitch, comments = spec_comments)
+
+@main.route('/pitch/comments/new_comment/<pitch_id>', methods = ['GET', 'POST'])
+@login_required
+def new_comments(pitch_id):
+    form = NewComment()
+    
+
+    if form.validate_on_submit():
+        comment = form.comment.data
+
+        new_comment = Comment(comment_body = comment, pitches_id = pitch_id)
+        new_comment.save_comment()
+
+        return redirect(url_for('main.show_comments', pitch_id = pitch_id ))
+
+    return render_template('new_comment.html', form = form)

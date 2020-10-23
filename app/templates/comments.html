@@ -5,7 +5,40 @@
     <h4><strong>Pitch: </strong>{{pitch.pitch_body}}</h4>
     <hr>
     <h4><strong>Comments: </strong></h4>
-   
+    <hr>
+    {% if comments %}
+    <div style="text-align: center;">
+        <br>
+        <a href="/pitch/comments/new_comment/{{pitch.id}}"><button class="btn btn-secondary" style="text-align: center;"> Add comment</button></a>
+    </div>
+    <hr>
+    <ul>
+        {% for comment in comments %}
+            
+            <li>
+                <div class="card">
+                    <div class="card-header">
+                        <p>{{comment.comment_body}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <p>Posted on : {{comment.posted}} (UTC TIME)</p>
+                    </div>
+                </div>
+                
+                
+                
+            </li>
+            <hr>
+            
+        {% endfor %}
+    </ul>
+    {% else %}
+        <h4 style="text-align: center;">No comments yet for this category, add one by clicking the button below</h4>
+        <div style="text-align: center;">
+            <br>
+            <a href="/pitch/comments/new_comment/{{pitch.id}}"><button class="btn btn-secondary" style="text-align: center;"> Add comment</button></a>
+        </div>
+    {% endif %}
 </div>
 
 
