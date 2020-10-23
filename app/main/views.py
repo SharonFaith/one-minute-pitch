@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, abort
 from . import main
-from ..models import User
+from ..models import User, Pitch
 from .forms import DeleteUser, UpdateProfile
 from .. import db, photos
 from flask_login import login_required
@@ -71,5 +71,14 @@ def show_pitches(category):
     '''
     function that will show the pitches under a certain category
     '''
+    pitches = Pitch.get_all_pitches()
+    categ = category
 
-    return render_template('pitches_for_cat.html')
+
+    return render_template('pitches_for_cat.html', category = categ)
+
+@main.route('/category/<category>/new_pitch')
+def new_pitch(category):
+    
+
+    return render_template('new_pitch.html')
