@@ -3,40 +3,26 @@
 
 {% block content %}
 <div class="container">
+    <h1 style="text-align: center;"><strong>{{user.username| capitalize}}</strong></h1>
+    <hr>
     <div class="row">
-        <div class="col-md-4">
-            <h3>{{user.username| capitalize}}</h3>
+        <div class="col-md-4" style="text-align: center;">
             
+            <hr>
             {% if user.bio %}
+                <h4><strong>Bio :</strong></h4>
                 <p>{{user.bio}}</p>
-                <p>{{wtf.quick_form(delete)}}</p>
+                
             {% else %}
                 <p>{{user.username| capitalize}} has no bio</p>
                 <hr>
-                <p>{{wtf.quick_form(delete)}}</p>
+                
             {% endif %}
 
-            <p>My pitches: </p>
-           
-            {% if pitches %}
-           
-                {% for pitch in pitches %}
-                    
-                    {% if pitch.user_id == user.id %}
-                    <ul>
-                        <li>
-                        <h4>Pitch category: {{pitch.category_pitch}}</h4>
-                        <p>{{pitch.pitch_body}}</p>
-                        </li>
-                    </ul>
-                    {% endif %}
-                {% endfor %}
-            {% else %}            
-                <p>You have no pitches yet </p>
-            {% endif %}
+            
         
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="padding: 30px; text-align: center;">
             {% if user.profile_pic_path %}
             <img src="{{url_for('static', filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
             {% else %}
@@ -52,14 +38,45 @@
             
         </div>
         <div class="col-md-4">
+            <hr>
             {% if user == current_user %}
-                <a href="{{url_for('main.update_profile', uname=user.username)}}">Edit profile</a>
+                <a href="{{url_for('main.update_profile', uname=user.username)}}"><h4>Edit profile</h4></a>
             {% endif %}
            
-                
+            <hr>
+            <hr>
             
+            <p>{{wtf.quick_form(delete)}}</p>
             
           </div>
+    </div>
+    <hr>
+    <div class="row">
+        <h2 style="text-align: center;"><strong>My Pitches: </strong></h2>
+           
+            {% if pitches %}
+           
+                {% for pitch in pitches %}
+                <div class="col-md-6">
+                    {% if pitch.user_id == user.id %}
+                    <div class="card" style="text-align: center;">
+                        <div class="card-header">
+                            <h4>Pitch category: {{pitch.category_pitch}}</h4>
+                        </div>
+                        <br>
+                        <div class="card-body">
+                            <p>{{pitch.pitch_body}}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    {% endif %}
+                </div>
+                
+                {% endfor %}
+            {% else %}            
+                <p>You have no pitches yet </p>
+            {% endif %}
+
     </div>
 </div>
 {% endblock %}
