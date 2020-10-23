@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, abort
 from . import main
 from ..models import User, Pitch
-from .forms import DeleteUser, UpdateProfile
+from .forms import DeleteUser, UpdateProfile, PitchForm
 from .. import db, photos
 from flask_login import login_required
 
@@ -72,13 +72,32 @@ def show_pitches(category):
     function that will show the pitches under a certain category
     '''
     pitches = Pitch.get_all_pitches()
-    categ = category
+    catego = category
+    spec_pitches = []
+    categ_name = category.split('-')
+    categ = " ".join(categ_name).title()
 
-
-    return render_template('pitches_for_cat.html', category = categ)
-
-@main.route('/category/<category>/new_pitch')
-def new_pitch(category):
+    
+    for pitch in pitches:
+        if pitch.category_pitch == catego:
+            spec_pitches.insert(0, pitch)
     
 
-    return render_template('new_pitch.html')
+
+    return render_template('pitches_for_cat.html', category = catego, categ_formatted = categ, pitches = spec_pitches)
+
+@main.route('/category/<category>/new_pitch', methods = ['GET', 'POST'])
+@login_required
+def new_pitch(category):
+    form = PitchForm()
+    categ = category
+
+    if form.validate_on_submit():
+        pitch = form.pitch.data
+
+        new_pitches = Pitch(category_pitch = categ, pitch_body = pitch)
+        new_pitches.save_pitch()
+
+        return redirect(url_for('main.show_pitches', category = categ))
+
+    return render_template('new_pitch.html', form = form)

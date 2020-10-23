@@ -1,6 +1,53 @@
 {% extends 'base.html' %}
 
 {% block content %}
- <button> <a href="/category/{{category}}/new_pitch">Add pitch</a> </button>
+
+<div class="container">
+    {% if pitches %}
+    <h2 style="text-align: center;">Pitches for {{categ_formatted}} category</h2>
+    <div style="text-align: center;">
+        <br>
+        <a href="/category/{{category}}/new_pitch"><button class="btn btn-secondary" style="text-align: center;"> Add pitch</button></a>
+    </div>
+    <hr>
+    <div class="row">
+        {% for pitch in pitches %}
+        <div class="col-md-12">
+           <div class="col-md-3"></div>
+                <div class="col-md-6" style="padding: 30px;"> 
+                    <div class="card"> 
+                        <div class="class-header">
+                            <h3 style="text-align: center;"><a href=""></a></h3>
+                        </div>
+                        <hr>
+                        <div class="card-body" style="text-align: center;">
+                            <p>{{pitch.pitch_body}}</p>
+                            <br>
+                            <br>
+                            <p><a href="">View comments</a></p>
+                            <br>
+                            <div class="card-footer">
+                                <button class="btn btn-primary btn-sm"> Upvote + </button> | <button class="btn btn-danger btn-sm">Downvote -</button> 
+                                <p>Date posted: {{pitch.posted}} (UTC TIME)</p>
+                                
+                                <hr>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            <div class="col-md-3"></div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <h3 style="text-align: center;">No pitches yet for this category, add one by clicking the button below</h3>
+        <div style="text-align: center;">
+            <br>
+            <a href="/category/{{category}}/new_pitch"><button class="btn btn-secondary" style="text-align: center;"> Add pitch</button></a>
+        </div>
+        {% endif %}
+</div>
+ 
 
 {% endblock %}
