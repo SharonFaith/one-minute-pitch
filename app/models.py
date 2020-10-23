@@ -44,6 +44,7 @@ class Pitch(db.Model):
     pitch_body = db.Column(db.String)
     posted = db.Column(db.DateTime, default = datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comments = db.relationship('Comment', backref = 'pitch', lazy = 'dynamic')
 
     def save_pitch(self):
         db.session.add(self)
@@ -53,3 +54,24 @@ class Pitch(db.Model):
     def get_all_pitches(cls):
         pitches = Pitch.query.all()
         return pitches
+
+class Comment(db.Model):
+    '''
+    Comment class
+    '''
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key = True)
+    comment_body = db.Column(db.String)
+    posted = db.Column(db.DateTime, default = datetime.utcnow)
+    pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'))
+
+
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_all_comments(cls):
+        comments = Comment.query.all()
+        return comments
