@@ -12,6 +12,7 @@
     <hr>
     <div class="row">
         {% for pitch in pitches %}
+        {% if pitch.user != None %}
         <div class="col-md-12">
            <div class="col-md-3"></div>
                 <div class="col-md-6" style="padding: 30px;"> 
@@ -38,6 +39,7 @@
                 </div>
             <div class="col-md-3"></div>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
     {% else %}

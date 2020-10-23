@@ -3,7 +3,7 @@ from . import main
 from ..models import User, Pitch, Comment
 from .forms import DeleteUser, UpdateProfile, PitchForm, NewComment
 from .. import db, photos
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 
 
@@ -20,8 +20,10 @@ def index():
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
     form = DeleteUser()
-    
+    pitches = Pitch.get_all_pitches()
 
+    
+    print(pitches)
     if user is None:
         abort(404)
     elif form.validate_on_submit():
@@ -31,7 +33,7 @@ def profile(uname):
         return redirect(url_for('main.index'))
     else:
 
-        return render_template('profile/profile.html', user = user, delete = form)
+        return render_template('profile/profile.html', user = user, delete = form, pitches = pitches)
 
 @main.route('/user/<uname>/update', methods = ['GET', 'POST'])
 @login_required
@@ -78,6 +80,7 @@ def show_pitches(category):
     categ = " ".join(categ_name).title()
 
     
+
     for pitch in pitches:
         if pitch.category_pitch == catego:
             spec_pitches.insert(0, pitch)
@@ -95,7 +98,7 @@ def new_pitch(category):
     if form.validate_on_submit():
         pitch = form.pitch.data
 
-        new_pitches = Pitch(category_pitch = categ, pitch_body = pitch)
+        new_pitches = Pitch(category_pitch = categ, pitch_body = pitch, user = current_user)
         new_pitches.save_pitch()
 
         return redirect(url_for('main.show_pitches', category = categ))
