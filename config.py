@@ -8,7 +8,7 @@ class Config:
 
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://student:Amazeing16@localhost/one_min_app'
+#    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://student:Amazeing16@localhost/one_min_app'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # email configurations
@@ -27,8 +27,8 @@ class ProdConfig(Config):
     '''
     pass
 
-#class TestConfig(Config):
- #   SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://student:Amazeing16@localhost/watchlist_test'
+class TestConfig(Config):
+   SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://student:Amazeing16@localhost/one_min_app_test'
 
 class DevConfig(Config):
     '''
@@ -37,11 +37,11 @@ class DevConfig(Config):
     Args:
         Config: The parent configuration class with general configuration settings
     '''
-   
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://student:Amazeing16@localhost/one_min_app'
     DEBUG = True
 
 config_options = {
     'development': DevConfig,
     'production': ProdConfig
- #   'test': TestConfig
+    'test': TestConfig
 }
