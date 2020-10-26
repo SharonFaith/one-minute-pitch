@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
+{% block styles %}
+    {{super()}}
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+{% endblock %}
+
+
 {% block content %}
-<div class="container">
+<div class="container" style="font-family: 'Fredoka One'; color: black;">
     <h1 style="text-align: center;"><strong>{{user.username| capitalize}}</strong></h1>
     <hr>
     <div class="row">
@@ -46,7 +53,7 @@
             <hr>
             <hr>
             
-            <p>{{wtf.quick_form(delete)}}</p>
+            
             
           </div>
     </div>
@@ -57,20 +64,24 @@
             {% if pitches %}
            
                 {% for pitch in pitches %}
-                <div class="col-md-6">
+               
                     {% if pitch.user_id == user.id %}
+                     
+                    <div class="col-md-6">
+                        
                     <div class="card" style="text-align: center;">
                         <div class="card-header">
-                            <h4>Pitch category: {{pitch.category_pitch}}</h4>
+                            <h4> {{pitch.pitch_body}}.<span style="color: brown;">(category: {{pitch.category_pitch}})</span> </h4>
                         </div>
                         <br>
                         <div class="card-body">
-                            <p>{{pitch.pitch_body}}</p>
+                            <p></p>
                         </div>
                     </div>
                     <hr>
+                    </div>
                     {% endif %}
-                </div>
+               
                 
                 {% endfor %}
             {% else %}            

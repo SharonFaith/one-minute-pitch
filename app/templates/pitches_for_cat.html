@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block styles %}
+    {{super()}}
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+{% endblock %}
 
-<div class="container">
+
+
+{% block content %}
+<div class="container-fluid" style="background-color: black;">
+<div class="container" style="font-family: 'Fredoka One', cursive; background-color: white;">
     {% if pitches %}
-    <h2 style="text-align: center;">Pitches for {{categ_formatted}} category</h2>
+    <h1 style="text-align: center; color: black;">Pitches for {{categ_formatted}} category</h1>
     <div style="text-align: center;">
         <br>
-        <a href="/category/{{category}}/new_pitch"><button class="btn btn-secondary" style="text-align: center;"> Add pitch</button></a>
+        <a href="/category/{{category}}/new_pitch"><button class="btn btn-secondary" style="text-align: center; font-size: x-large;"> Click here to add a pitch</button></a>
     </div>
     <hr>
     <div class="row">
@@ -16,19 +24,22 @@
         <div class="col-md-12">
            <div class="col-md-3"></div>
                 <div class="col-md-6" style="padding: 30px;"> 
-                    <div class="card"> 
-                        <div class="class-header">
-                            <h3 style="text-align: center;"><a href=""></a></h3>
+                    <div class="card"  style="color: black; background-color:beige;"> 
+                        <div class="class-header" style="text-align: center; background-color: black; padding: 20px;">
+                            <h4 style="font-size: x-large; color: maroon;">{{pitch.pitch_body}}</h4>
+                            <h3 style="color: maroon; font-size: medium;"><em> ~by {{pitch.user}}</em></h3>
                         </div>
-                        <hr>
-                        <div class="card-body" style="text-align: center;">
-                            <p>{{pitch.pitch_body}}</p>
+                        <br>
+                        <div class="card-body" style="text-align: center; font-size: x-large; ">
+                            <a href=""><span class="fas fa-thumbs-up"></span></a>
+                            <br>
+                            <button class="btn btn-primary btn-sm" style="font-size: medium;"> Upvote + </button> | <button class="btn btn-danger btn-sm" style="font-size: medium;">Downvote -</button> 
                             <br>
                             <br>
-                            <p><a href="/pitch/comments/{{pitch.id}}">View and add comments</a></p>
+                            <p><a href="/pitch/comments/{{pitch.id}}" style="font-size: large; color: maroon;">Click here to view and add comments</a></p>
                             <br>
-                            <div class="card-footer">
-                                <button class="btn btn-primary btn-sm"> Upvote + </button> | <button class="btn btn-danger btn-sm">Downvote -</button> 
+                            <div class="card-footer" style="font-size: large;">
+                                
                                 <p>Date posted: {{pitch.posted}} (UTC TIME)</p>
                                 
                                 <hr>
@@ -51,5 +62,5 @@
         {% endif %}
 </div>
  
-
+</div>
 {% endblock %}

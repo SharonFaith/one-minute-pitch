@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
 
+{% block styles %}
+    {{super()}}
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Satisfy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Satisfy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+{% endblock %}
+
+
 {% block content %}
-<div class="container">
+<div class="container-fluid" style="background-color: black;">
+<div class="container" style="font-family: 'Noto Sans JP', sans-serif; background-color: white;">
     <h4><strong>Pitch: </strong>{{pitch.pitch_body}}</h4>
     <hr>
     <h4><strong>Comments: </strong></h4>
@@ -40,7 +49,7 @@
         </div>
     {% endif %}
 </div>
-
+</div>
 
 
 {% endblock %}

@@ -2,23 +2,30 @@
 
 {% block styles %}
     {{super()}}
-    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 {% endblock %}
 
 
 {% block content %}
-<div class="container">
-    <h3 style="text-align: center;">Welcome to One Min Pitch App!</h3>
-    <p style="text-align: center;">Users post their one minute pitches in specific categories, and other users can vote for their favourite pitches and give feedback!</p> 
-    <p style="text-align: center;">Click on any of the categories below to see the pitches posted under each!</p>
-
+<div class="container-fluid" style="background-color: black;">
+<div class="container" style=" font-family: 'Fredoka One', cursive; color: black; background-color: white; ">
+    <div style="background-color: white;">    
+        <h1 style="text-align: center; ">Welcome to One Min Pitch App!</h1>
+        <hr>
+   
+        <h4 style="text-align: center; ">Users post their one minute pitches in specific categories, and other users can vote for their favourite pitches and give feedback!</h4> 
+        <h4 style="text-align: center; ">Click on any of the categories below to see the pitches posted under each!</h4>
+    
+    </div>
+    
 
 
     <div class="row">
-    <div class="col-md-6" style="padding: 30px;"> 
-        <div class="card"> 
+    <div class="col-md-6" style="padding: 30px; "> 
+        <div class="card" style="background-color: black;" > 
             <div class="class-header">
-                <h3 style="text-align: center;"><a href="/category/pick-up-lines">Pick up lines</a></h3>
+                <h3 style="text-align: center;"><a href="/category/pick-up-lines" style="color: coral;" >Pick up lines</a></h3>
             </div>
             <hr>
             <div class="card-body" style="text-align: center;">
@@ -33,10 +40,10 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6" style="padding: 30px;"> 
-        <div class="card"> 
+    <div class="col-md-6" style="padding: 30px;" > 
+        <div class="card" style="background-color: black;"> 
             <div class="class-header">
-                <h3 style="text-align: center;"><a href="/category/quotes">Quotes</a></h3>
+                <h3 style="text-align: center;"><a href="/category/quotes" style="color: coral;">Quotes</a></h3>
             </div>
             <hr>
             <div class="card-body" style="text-align: center;">
@@ -54,9 +61,9 @@
     </div>
     <div class="row">
         <div class="col-md-6" style="padding: 30px;"> 
-            <div class="card"> 
+            <div class="card" style="background-color: black;"> 
                 <div class="class-header">
-                    <h3 style="text-align: center;"><a href="/category/dry-jokes">Dry jokes</a></h3>
+                    <h3 style="text-align: center;"><a href="/category/dry-jokes" style="color: coral;">Dry jokes</a></h3>
                 </div>
                 <hr>
                 <div class="card-body" style="text-align: center;">
@@ -72,9 +79,9 @@
             </div>
         </div>
         <div class="col-md-6" style="padding: 30px;"> 
-            <div class="card"> 
+            <div class="card" style="background-color: black;"> 
                 <div class="class-header">
-                    <h3 style="text-align: center;"><a href="/category/product-pitch">Product pitch</a></h3>
+                    <h3 style="text-align: center;"><a href="/category/product-pitch" style="color: coral;">Product pitch</a></h3>
                 </div>
                 <hr>
                 <div class="card-body" style="text-align: center;">
@@ -92,9 +99,9 @@
     </div>
     <div class="row">
         <div class="col-md-6" style="padding: 30px;"> 
-            <div class="card"> 
+            <div class="card" style="background-color: black;"> 
                 <div class="class-header">
-                    <h3 style="text-align: center;"><a href="/category/movie-pitch">Movie pitch</a></h3>
+                    <h3 style="text-align: center;"><a href="/category/movie-pitch" style="color: coral;">Movie pitch</a></h3>
                 </div>
                 <hr>
                 <div class="card-body" style="text-align: center;">
@@ -110,9 +117,9 @@
             </div>
         </div>
         <div class="col-md-6" style="padding: 30px;"> 
-            <div class="card"> 
+            <div class="card" style="background-color: black;"> 
                 <div class="class-header">
-                    <h3 style="text-align: center;"><a href="/category/book-pitch">Book pitch</a></h3>
+                    <h3 style="text-align: center;"><a href="/category/book-pitch" style="color: coral;">Book pitch</a></h3>
                 </div>
                 <hr>
                 <div class="card-body" style="text-align: center;">
@@ -129,5 +136,5 @@
         </div>
     </div>
 </div>
-
+</div>
 {% endblock %}
